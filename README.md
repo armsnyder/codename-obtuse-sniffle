@@ -33,6 +33,30 @@ A.
 
 B.
 
+Naive Bayes
+
+A. Naive Bayes Classifiers are simple probability-based classifiers that apply Bayes' theorem with the assumption of
+independence between features given the class variable. The classifiers consider each of the features to contribute
+independently to the probability of an example falling within a given class. This assumption causes such classifiers to
+be quite simple and efficient and only requires a small amount of training data.
+
+Features on the digit data for this classifier would be each pixel in the image, which can take a value between 0 or 1
+depending on that pixel's intensity. If the pixel has an intensity greater than .5, it is 1, otherwise it is 0.
+This kind of data obviously violates the independence assumption of the classifier, but naive bayes often performs well
+even when this assumption is violated. The classifier will output a class corresponding to the digit that the 
+classifier classified the input as.
+
+B. Hyperparameters for Bernoulli naive bayes:
+alpha: Additive smoothing parameter. This attempts to smooth categorical data by adding a certain baseline to each
+feature, such that even features that are not observed have some small probability. (e.g. black swan discussion).
+
+binarize: threshold for converting features to booleans. Allows for changing what the pixel intensity threshold is for 
+marking it as "on" vs "off"
+
+fit_prior: whether to learn class prior probabilities or assume a uniform prior probability
+
+class_prior: manual input for class prior probabilities.
+
 **Part 3**
 
 A.

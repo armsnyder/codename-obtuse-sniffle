@@ -12,7 +12,8 @@ B.
 
 C.
 
-D.
+D. The images are converted into a vector for classification where each pixel is a feature. It is important that 
+similarly labeled examples line up so that their feature vectors appear similar.
 
 **Part 2**
 

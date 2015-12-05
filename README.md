@@ -29,9 +29,18 @@ examples.
 
 **Part 2**
 
-A.
+Support Vector Classification
 
-B.
+A. A support vector machine creates a binary classifier by mapping example inputs into a higher dimensional space using 
+a kernel function and then finding the hyperplane that separates the examples into two groups such that the margin 
+between the groups is maximized. To use it to classify images, the data would be encoded as a list of binary digits 
+representing each pixel in the image as being either on or off. The SVM would interpret each pixel as a dimension. The 
+classifier will output the class of the predicted value of the test image.
+
+B. The SVM's hyperparameters are:  
+* slack, which indicates how much error we can tolerate when drawing the separating hyperplane
+* kernel function, which changes how new training data is mapped to a higher dimension space
+
 
 **Part 3**
 

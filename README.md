@@ -14,10 +14,18 @@ B. We looked through examples of the number 7 and found these to be shocking.
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/bad_7_c.png)  
 These examples might be challenging because they appear to be other numbers, like 9 or some versions of 1.
 
-C.
+C. We chose our training and testing sets randomly without replacement. For a classifier to generalize over unseen data,
+we want the training and testing sets to be representative of the population of interest.In a perfect world, we would 
+look through all of the data in order to get examples that both cover all of the variations in the examples,
+and are representative of the data as a whole. However, this in infeasible due to the size of the data set.
+Therefore, we chose to randomly draw from the examples without replacement in order to get a set that is approximately
+representative. Our training and testing sets are disjoint, and training set is 1000 of each digit, for 10000 total 
+images. The testing set is 100 of each digit for 1000 total images.
 
 D. The images are converted into a vector for classification where each pixel is a feature. It is important that 
-similarly labeled examples line up so that their feature vectors appear similar.
+similarly labeled examples line up so that their feature vectors appear similar. Because of the way the data set is
+structured, the classifier is actually learning which pixels are on or off and the correlation between pixels over the 
+examples.
 
 **Part 2**
 

@@ -8,7 +8,9 @@ Homework 9
 
 A. total: 60,000 0: 5,923 1: 6,742 2: 5,958 3: 6,131 4: 5,842 5: 5,421 6: 5,918 7: 6,265 8: 5,851 9: 5,949
 
-B.
+B. We looked through examples of the number 7 and found these to be shocking.
+![](http://github.com/friendly-flame/codename-obtuse-sniffle/images/bad_7_a.png)
+These examples might be challenging because they appear to be other numbers.
 
 C.
 

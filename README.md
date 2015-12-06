@@ -76,7 +76,7 @@ C.
 
 **Part 4**
 
-B.
+B.  
 kernel='rbf', degree=3, C=1, gamma='auto' :
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_set_size.png)
 
@@ -99,17 +99,20 @@ the gamma value can be tweaked to optimize accuracy, with a value on the order o
 how much influence each training example has.
 
 Confusion Matrix:  
-**   0  1  2  3  4  5  6  7  8  9**
-**0** 99  0  0  0  0  0  1  0  0  0  
-**1**  0 99  0  0  0  0  0  1  0  0  
-**2**  3  1 92  0  2  1  0  1  0  0  
-**3**  0  0  0 98  0  0  0  1  0  1  
-**4**  0  1  0  0 98  0  0  0  0  1  
-**5**  1  0  0  2  0 96  0  0  0  1  
-**6**  0  2  0  0  0  0 98  0  0  0  
-**7**  1  0  0  0  0  0  0 99  0  0  
-**8**  0  1  1  1  0  0  0  0 97  0  
-**9**  0  0  1  2  2  0  0  0  0 95
+```
+     0  1  2  3  4  5  6  7  8  9  
+  -------------------------------  
+0 | 99  0  0  0  0  0  1  0  0  0  
+1 |  0 99  0  0  0  0  0  1  0  0  
+2 |  3  1 92  0  2  1  0  1  0  0  
+3 |  0  0  0 98  0  0  0  1  0  1  
+4 |  0  1  0  0 98  0  0  0  0  1  
+5 |  1  0  0  2  0 96  0  0  0  1  
+6 |  0  2  0  0  0  0 98  0  0  0  
+7 |  1  0  0  0  0  0  0 99  0  0  
+8 |  0  1  1  1  0  0  0  0 97  0  
+9 |  0  0  1  2  2  0  0  0  0 95
+```
 
 C.
 

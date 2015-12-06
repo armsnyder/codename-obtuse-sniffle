@@ -46,12 +46,10 @@ B. Hyperparameters for Bernoulli naive bayes:
 alpha: Additive smoothing parameter. This attempts to smooth categorical data by adding a certain baseline to each
 feature, such that even features that are not observed have some small probability. (e.g. black swan discussion).
 
-binarize: threshold for converting features to booleans. Allows for changing what the pixel intensity threshold is for 
+* binarize: threshold for converting features to booleans. Allows for changing what the pixel intensity threshold is for 
 marking it as "on" vs "off"
-
-fit_prior: whether to learn class prior probabilities or assume a uniform prior probability
-
-class_prior: manual input for class prior probabilities.
+* fit_prior: whether to learn class prior probabilities or assume a uniform prior probability
+* class_prior: manual input for class prior probabilities.
 
 Support Vector Classification
 
@@ -61,9 +59,13 @@ between the groups is maximized. To use it to classify images, the data would be
 representing each pixel in the image as being either on or off. The SVM would interpret each pixel as a dimension. The 
 classifier will output the class of the predicted value of the test image.
 
-B. The SVM's hyperparameters are:  
-* slack, which indicates how much error we can tolerate when drawing the separating hyperplane
-* kernel function, which changes how new training data is mapped to a higher dimension space
+B. Hyperparameters for SVC:
+* kernel: the kernel function to use, which changes how new training data is mapped to a higher dimension space
+* C: the cost of classification. A large C leads to low bias and high variance, while a small C leads to high bias and 
+low variance.
+* gamma: kernel coefficient, which controls the sharpness of the peaks where the points are raised. A high gamma gives 
+a soft bump, resulting in high bias and low variance, while a low gamma gives a sharp bump, resulting in low bias and 
+high variance.
 
 
 **Part 3**
@@ -77,26 +79,22 @@ C.
 **Part 4**
 
 B.  
-kernel='rbf', degree=3, C=1, gamma='auto' :
+kernel='rbf', C=1, gamma='auto' :
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_set_size.png)
 
 training_set_size=10000, degree=3, C=1, gamma='auto' :  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_kernel.png)
 
-training_set_size=10000, kernel='rbf', C=1, gamma='auto' :  
-![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_degree.png)
-
-training_set_size=10000, kernel='rbf', degree=3, gamma='auto' :  
+training_set_size=10000, kernel='rbf', gamma='auto' :  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_c.png)
 
-training_set_size=10000, kernel='rbf', degree=3, C=8 :  
+training_set_size=10000, kernel='rbf', C=8 :  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_gamma.png)  
 
 Based on my results, the default RBF kernel function performs the best. Error is further minimized by increasing the C 
 value, which corresponds to the cost of classification. A large C leads to low bias and high variance, while a small C 
-leads to high bias and low variance. The default degree of 3 performs well, and altering it has little effect. Finally, 
-the gamma value can be tweaked to optimize accuracy, with a value on the order of 0.1 being most optimal. Gamma affects 
-how much influence each training example has.
+leads to high bias and low variance. Finally, the gamma value can be tweaked to optimize accuracy, with a value on the 
+order of 0.1 being most optimal. Gamma affects how much influence each training example has.
 
 Confusion Matrix:  
 ```
@@ -114,7 +112,16 @@ Confusion Matrix:
 9 |  0  0  1  2  2  0  0  0  0 95
 ```
 
-C.
+C.  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_miss_0.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_miss_1.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_miss_7.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_miss_9.png)  
+The misclassified examples were a mix of poor examples, clean examples, and examples that were predicted to fail from 
+part 1B. As such, we have learned that not all of the examples are perfect, but since the SVM treats each pixel as 
+a feature instead of looking at aspects of the overall shape of the image as features, images like 2, which shares 
+many pixels with the 0, are misclassified. The fact that there is a gap in the stroke is not factored into the 
+classification.
 
 **Part 5**
 

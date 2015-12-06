@@ -4,6 +4,7 @@ import numpy as np
 from sklearn import svm
 from sklearn.metrics import confusion_matrix
 import random
+import matplotlib.pyplot as plt
 
 
 def preprocess(images, binary=False):
@@ -124,6 +125,20 @@ def confusion():
     predicted = classify(testing_set, classifier)
     print confusion_matrix(testing_labels, predicted)
 
+
+def show_misclassified():
+    testing_set, testing_labels = (
+        pickle.load(open('testing_set_2.p')),
+        pickle.load(open('testing_labels_2.p')))
+    testing_set_p = preprocess(testing_set, False)
+    classifier = pickle.load(open('classifier_2.p'))
+    predicted = classify(testing_set_p, classifier)
+    for i in range(len(predicted)):
+        if predicted[i] != testing_labels[i]:
+            plt.imshow(testing_set[i], cmap='gray')
+            plt.title(str(testing_labels[i])+' misclassified as '+str(predicted[i]))
+            plt.show()
+
+
 if __name__ == "__main__":
-    confusion()
-    # main(True, True)
+    show_misclassified()

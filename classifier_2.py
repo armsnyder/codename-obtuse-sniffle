@@ -2,6 +2,7 @@ import pickle
 from mnist import load_mnist
 import numpy as np
 from sklearn import svm
+from sklearn.metrics import confusion_matrix
 import random
 
 
@@ -15,11 +16,11 @@ def preprocess(images, binary=False):
         return np.array([i.flatten() for i in images], dtype=float)
 
 
-def build_classifier(images, labels, C=1.0, kernel='rbf', degree=3):
+def build_classifier(images, labels, C=8, kernel='rbf', degree=3, gamma=0.02):
     # this will actually build the classifier. In general, it
     # will call something from sklearn to build it, and it must
     # return the output of sklearn. Right now it does nothing.
-    classifier = svm.SVC(C=C, kernel=kernel, degree=degree)
+    classifier = svm.SVC(C=C, kernel=kernel, degree=degree, gamma=gamma)
     classifier.fit(images, labels)
     return classifier
 
@@ -42,11 +43,12 @@ def error_measure(predicted, actual):
     return np.count_nonzero(abs(predicted - actual)) / float(len(predicted))
 
 
-def select_data(training_set_size, testing_set_size):
+def select_data(training_set_size, testing_set_size, save_test_set=False):
     """
     Choose examples for training and testing data, randomly, as described in 1C.
     :param training_set_size: Total number of training examples
     :param testing_set_size: Total number of testing examples
+    :param save_test_set: If True, pickle testing set
     :return: training_set, training_labels, testing_set, testing_labels
     """
     training_set = []
@@ -77,8 +79,9 @@ def select_data(training_set_size, testing_set_size):
         testing_set.extend([images[i] for i in testing_indices])
         testing_labels.extend([labels[i] for i in testing_indices])
 
-    pickle.dump(testing_set, open('testing_set_2.p', 'w'))
-    pickle.dump(testing_labels, open('testing_labels_2.p', 'w'))
+    if save_test_set:
+        pickle.dump(testing_set, open('testing_set_2.p', 'w'))
+        pickle.dump(testing_labels, open('testing_labels_2.p', 'w'))
     return training_set, training_labels, testing_set, testing_labels
 
 
@@ -90,7 +93,7 @@ def main(load_classifier=False, load_data=False):
         pickle.load(open('training_labels_2.p')),
         pickle.load(open('testing_set_2.p')),
         pickle.load(open('testing_labels_2.p'))
-    ) if load_data else select_data(10000, 1000)
+    ) if load_data else select_data(10000, 1000, True)
 
     # preprocessing
     print 'preprocessing data'
@@ -112,5 +115,15 @@ def main(load_classifier=False, load_data=False):
     print error_measure(predicted, testing_labels)
 
 
+def confusion():
+    testing_set, testing_labels = (
+        pickle.load(open('testing_set_2.p')),
+        pickle.load(open('testing_labels_2.p')))
+    testing_set = preprocess(testing_set, False)
+    classifier = pickle.load(open('classifier_2.p'))
+    predicted = classify(testing_set, classifier)
+    print confusion_matrix(testing_labels, predicted)
+
 if __name__ == "__main__":
-    main()
+    confusion()
+    # main(True, True)

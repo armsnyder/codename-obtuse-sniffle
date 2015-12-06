@@ -76,9 +76,40 @@ C.
 
 **Part 4**
 
-A.
-
 B.
+kernel='rbf', degree=3, C=1, gamma='auto' :
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_set_size.png)
+
+training_set_size=10000, degree=3, C=1, gamma='auto' :  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_kernel.png)
+
+training_set_size=10000, kernel='rbf', C=1, gamma='auto' :  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_degree.png)
+
+training_set_size=10000, kernel='rbf', degree=3, gamma='auto' :  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_c.png)
+
+training_set_size=10000, kernel='rbf', degree=3, C=8 :  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_gamma.png)  
+
+Based on my results, the default RBF kernel function performs the best. Error is further minimized by increasing the C 
+value, which corresponds to the cost of classification. A large C leads to low bias and high variance, while a small C 
+leads to high bias and low variance. The default degree of 3 performs well, and altering it has little effect. Finally, 
+the gamma value can be tweaked to optimize accuracy, with a value on the order of 0.1 being most optimal. Gamma affects 
+how much influence each training example has.
+
+Confusion Matrix:  
+**   0  1  2  3  4  5  6  7  8  9**
+**0** 99  0  0  0  0  0  1  0  0  0  
+**1**  0 99  0  0  0  0  0  1  0  0  
+**2**  3  1 92  0  2  1  0  1  0  0  
+**3**  0  0  0 98  0  0  0  1  0  1  
+**4**  0  1  0  0 98  0  0  0  0  1  
+**5**  1  0  0  2  0 96  0  0  0  1  
+**6**  0  2  0  0  0  0 98  0  0  0  
+**7**  1  0  0  0  0  0  0 99  0  0  
+**8**  0  1  1  1  0  0  0  0 97  0  
+**9**  0  0  1  2  2  0  0  0  0 95
 
 C.
 

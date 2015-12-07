@@ -141,4 +141,4 @@ def show_misclassified():
 
 
 if __name__ == "__main__":
-    show_misclassified()
+    main(True, True)

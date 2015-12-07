@@ -195,6 +195,8 @@ Confusion Matrix:
 9 |  0  1  2  1 39  2  1  8  4 42  
  ```
 
+The boosting using weak classifiers does not outperform either classifier from question 2.
+
 B.
 
 C.

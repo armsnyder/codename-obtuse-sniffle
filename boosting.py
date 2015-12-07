@@ -49,7 +49,11 @@ def main():
         pickle.load(open('training_labels_2.p')),
         pickle.load(open('testing_set_2.p')),
         pickle.load(open('testing_labels_2.p'))
-    ) if True else classifier_2.select_data(1000, 100)
+    ) if False else classifier_2.select_data(3000, 300)
+    pickle.dump(training_set, open('training_set_b.p', 'w'))
+    pickle.dump(training_labels, open('training_labels_b.p', 'w'))
+    pickle.dump(testing_set, open('testing_set_b.p', 'w'))
+    pickle.dump(testing_labels, open('testing_labels_b.p', 'w'))
     training_set = preprocess(training_set, False)
     testing_set = preprocess(testing_set, False)
     print boosting_B(training_set, training_labels, testing_set, testing_labels)

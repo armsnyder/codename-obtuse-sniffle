@@ -3,6 +3,7 @@ from sklearn.metrics import confusion_matrix
 import pickle
 import numpy as np
 from sklearn import svm
+import classifier_2
 
 
 def boosting_A(training_set, training_labels, testing_set, testing_labels):
@@ -18,9 +19,11 @@ def boosting_A(training_set, training_labels, testing_set, testing_labels):
 def boosting_B(training_set, training_labels, testing_set, testing_labels):
     # Build boosting algorithm for question B
     # Return confusion matrix
-    base_classifier = classifier = svm.SVC(C=8, kernel='rbf', gamma=0.02)
-    classifier = AdaBoostClassifier(base_estimator=base_classifier, algorithm='SAMME')
+    print 'ready to boost'
+    classifier = AdaBoostClassifier(base_estimator=svm.SVC(C=8, kernel='rbf', gamma=0.02), algorithm='SAMME')
+    print 'fitting'
     classifier.fit(training_set, training_labels)
+    print 'predicting'
     predicted_labels = classifier.predict(testing_set)
     print 'error:', error_measure(predicted_labels, testing_labels)
     return confusion_matrix(testing_labels, predicted_labels)
@@ -46,7 +49,7 @@ def main():
         pickle.load(open('training_labels_2.p')),
         pickle.load(open('testing_set_2.p')),
         pickle.load(open('testing_labels_2.p'))
-    )
+    ) if True else classifier_2.select_data(1000, 100)
     training_set = preprocess(training_set, False)
     testing_set = preprocess(testing_set, False)
     print boosting_B(training_set, training_labels, testing_set, testing_labels)

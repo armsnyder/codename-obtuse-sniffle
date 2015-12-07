@@ -70,10 +70,10 @@ high variance.
 
 **B.**
 
-1. Alpha = **1**, Threshold = **0.5**:
+Alpha = **1**, Threshold = **0.5**:
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_set_size.png)  
 
-2. training_set_size = **10000**, Alpha = **1**:
+training_set_size = **10000**, Alpha = **1**:
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_threshold.png)  
 
 There does not appear to be a strong correlation between threshold for binarizing the data and error rate. Values in the 
@@ -87,7 +87,7 @@ slightly increases error rate.
 
 Based on these results, the optimal parameters chosen were Alpha = 1, Threshold = .5 Optimal error rates of ~16% error.
 
-3. Confusion Matrix 
+Confusion Matrix 
 ```
               Classifcation
          0  1  2  3  4  5  6  7  8  9  
@@ -118,7 +118,7 @@ share most of the activated pixels, often result in error.
 ##Part 4
 
 **B.**  
-kerne l =**'rbf'**, C = **1**, gamma = **'auto'** :
+kernel =**'rbf'**, C = **1**, gamma = **'auto'** :
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/svm_set_size.png)
 
 training_set_size = **10000**, degree = **3**, C = **1**, gamma = **'auto'** :  
@@ -175,7 +175,8 @@ the Support Vector Machine mainly had mis-classifications for difficult examples
 One reason the SVM may have had better performance is because the Bayesian Independence assumption is not met by this
 feature representation. Pixel values are not independent of one another given a class by nature of how handwriting works.
 This violation of the fundamental assumption of a Naive Bayes classifier most likely contributes to some of the error.
-**Part 6**
+
+##Part 6
 
 **A.**
 error: **0.318**  

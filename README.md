@@ -43,13 +43,11 @@ even when this assumption is violated. The classifier will output a class corres
 classifier classified the input as.
 
 B. Hyperparameters for Bernoulli naive bayes:
-alpha: Additive smoothing parameter. This attempts to smooth categorical data by adding a certain baseline to each
-feature, such that even features that are not observed have some small probability. (e.g. black swan discussion).
-
+* alpha: Additive smoothing parameter. This attempts to smooth categorical data by adding a certain baseline to each
+feature, such that even features that are not observed have some small probability. (e.g. black swan discussion). 0 is 
+no smoothing. Higher numbers increase the smoothing applied to each feature.
 * binarize: threshold for converting features to booleans. Allows for changing what the pixel intensity threshold is for 
 marking it as "on" vs "off"
-* fit_prior: whether to learn class prior probabilities or assume a uniform prior probability
-* class_prior: manual input for class prior probabilities.
 
 Support Vector Classification
 
@@ -69,12 +67,47 @@ high variance.
 
 
 **Part 3**
-
-A.
-
 B.
+1. Alpha = 1, Threshold = 0.5:
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_set_size.png)
 
+2. training_set_size = 10000, Alpha = 1:
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb.threshold.png)
+There does not appear to be a strong correlation between threshold for binarizing the data and error rate. Values in the 
+range [0.4, 0.6] appear to be slightly better than the rest.
+
+training_set_size = 10000, Threshold = 0.5:
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb.alpha.png)
+As you can see, apart from alpha = 0, alpha does not have a major effect on error rate. In fact, increasing alpha
+slightly increases error rate.
+
+Based on these results, the optimal parameters chosen were Alpha = 1, Threshold = .5 Optimal error rates of ~16% error.
+3. Confusion Matrix 
+```
+           Classifcation
+        0  1  2  3  4  5  6  7  8  9    
+      -----------------------------
+    0 |90  0  1  1  0  4  0  0  4  0
+ E  1 | 0 97  0  0  0  1  1  0  1  0
+ x  2 | 4  3 79  7  1  0  1  1  4  0
+ p  3 | 1  1  4 78  0  2  1  4  7  2
+ e  4 | 1  1  0  0 77  0  0  0  2 19
+ c  5 | 3  2  2  8  6 69  0  2  5  3
+ t  6 | 0  1  5  0  1  2 90  0  1  0
+ e  7 | 1  2  0  0  5  0  0 85  0  7
+ d  8 | 1  6  0  5  2  3  1  0 77  5
+    9 | 1  2  0  0  3  0  0  5  4 85
+```
 C.
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_0.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_1.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_2.png)  
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_3.png)
+The above misclassified examples, are unclean(0, 2), resemble other numbers(3), or are clean but still misclassified (1)
+The most often errors occur from unclean images or inconsistent number styles leading to misclassification, especially 
+when some parts of numbers share similar regions. Because the classifier only compares activated pixels and not more
+complex features such as strokes, empty spaces, etc., digits with similar sections of pixels, like 4 and 9, where they 
+share most of the activated pixels, often result in error.
 
 **Part 4**
 
@@ -98,18 +131,19 @@ order of 0.1 being most optimal. Gamma affects how much influence each training 
 
 Confusion Matrix:  
 ```
-     0  1  2  3  4  5  6  7  8  9  
-  -------------------------------  
-0 | 99  0  0  0  0  0  1  0  0  0  
-1 |  0 99  0  0  0  0  0  1  0  0  
-2 |  3  1 92  0  2  1  0  1  0  0  
-3 |  0  0  0 98  0  0  0  1  0  1  
-4 |  0  1  0  0 98  0  0  0  0  1  
-5 |  1  0  0  2  0 96  0  0  0  1  
-6 |  0  2  0  0  0  0 98  0  0  0  
-7 |  1  0  0  0  0  0  0 99  0  0  
-8 |  0  1  1  1  0  0  0  0 97  0  
-9 |  0  0  1  2  2  0  0  0  0 95
+              Classifcation
+         0  1  2  3  4  5  6  7  8  9  
+      -------------------------------  
+    0 | 99  0  0  0  0  0  1  0  0  0  
+ E  1 |  0 99  0  0  0  0  0  1  0  0  
+ x  2 |  3  1 92  0  2  1  0  1  0  0  
+ p  3 |  0  0  0 98  0  0  0  1  0  1  
+ e  4 |  0  1  0  0 98  0  0  0  0  1  
+ c  5 |  1  0  0  2  0 96  0  0  0  1  
+ t  6 |  0  2  0  0  0  0 98  0  0  0  
+ e  7 |  1  0  0  0  0  0  0 99  0  0  
+ d  8 |  0  1  1  1  0  0  0  0 97  0  
+    9 |  0  0  1  2  2  0  0  0  0 95
 ```
 
 C.  

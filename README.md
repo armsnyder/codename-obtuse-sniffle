@@ -71,16 +71,16 @@ high variance.
 B.
 
 1. Alpha = 1, Threshold = 0.5:
-![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_set_size.png)
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_set_size.png)  
 
 2. training_set_size = 10000, Alpha = 1:
-![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_threshold.png)
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_threshold.png)  
 
 There does not appear to be a strong correlation between threshold for binarizing the data and error rate. Values in the 
 range [0.4, 0.6] appear to be slightly better than the rest.
 
 training_set_size = 10000, Threshold = 0.5:
-![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_alpha.png)
+![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_alpha.png)  
 
 As you can see, apart from alpha = 0, alpha does not have a major effect on error rate. In fact, increasing alpha
 slightly increases error rate.

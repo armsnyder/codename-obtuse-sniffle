@@ -104,7 +104,7 @@ Based on these results, the optimal parameters chosen were Alpha = 1, Threshold 
     9 | 1  2  0  0  3  0  0  5  4 85
 ```
 
-C.
+C.  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_0.png)  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_1.png)  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_2.png)  

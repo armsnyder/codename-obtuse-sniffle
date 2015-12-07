@@ -168,6 +168,13 @@ classification.
 
 **Part 5**
 
+The Support Vector Machine outperformed the Naive Bayes classifier remarkably, with ~13% reduction
+in overall error rate. Misclassifications occured for almost any pair of images using the Naive Bayes classifier, while
+the Support Vector Machine mainly had mis-classifications for difficult examples. 
+
+One reason the SVM may have had better performance is because the Bayesian Independence assumption is not met by this
+feature representation. Pixel values are not independent of one another given a class by nature of how handwriting works.
+This violation of the fundamental assumption of a Naive Bayes classifier most likely contributes to some of the error.
 **Part 6**
 
 A.

@@ -96,6 +96,9 @@ value, which corresponds to the cost of classification. A large C leads to low b
 leads to high bias and low variance. Finally, the gamma value can be tweaked to optimize accuracy, with a value on the 
 order of 0.1 being most optimal. Gamma affects how much influence each training example has.
 
+After a performing grid search to optimize the parameters further, the best SVM classifier had hyperparameters 
+kernel=**'rbf'**, C=**8**, and gamma=**0.02**, and run with a training_set_size=**10000** had error=**0.029**.
+
 Confusion Matrix:  
 ```
      0  1  2  3  4  5  6  7  8  9  

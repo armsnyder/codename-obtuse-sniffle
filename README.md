@@ -89,19 +89,19 @@ Based on these results, the optimal parameters chosen were Alpha = 1, Threshold 
 
 3. Confusion Matrix 
 ```
-           Classifcation
-        0  1  2  3  4  5  6  7  8  9    
-      -----------------------------
-    0 |90  0  1  1  0  4  0  0  4  0
- E  1 | 0 97  0  0  0  1  1  0  1  0
- x  2 | 4  3 79  7  1  0  1  1  4  0
- p  3 | 1  1  4 78  0  2  1  4  7  2
- e  4 | 1  1  0  0 77  0  0  0  2 19
- c  5 | 3  2  2  8  6 69  0  2  5  3
- t  6 | 0  1  5  0  1  2 90  0  1  0
- e  7 | 1  2  0  0  5  0  0 85  0  7
- d  8 | 1  6  0  5  2  3  1  0 77  5
-    9 | 1  2  0  0  3  0  0  5  4 85
+              Classifcation
+         0  1  2  3  4  5  6  7  8  9  
+      -------------------------------  
+    0 | 90  0  1  1  0  4  0  0  4  0
+ E  1 |  0 97  0  0  0  1  1  0  1  0
+ x  2 |  4  3 79  7  1  0  1  1  4  0
+ p  3 |  1  1  4 78  0  2  1  4  7  2
+ e  4 |  1  1  0  0 77  0  0  0  2 19
+ c  5 |  3  2  2  8  6 69  0  2  5  3
+ t  6 |  0  1  5  0  1  2 90  0  1  0
+ e  7 |  1  2  0  0  5  0  0 85  0  7
+ d  8 |  1  6  0  5  2  3  1  0 77  5
+    9 |  1  2  0  0  3  0  0  5  4 85
 ```
 
 C.  
@@ -181,22 +181,63 @@ A.
 error: 0.318  
 Confusion Matrix:  
 ```
-     0  1  2  3  4  5  6  7  8  9  
-  -------------------------------  
-0 | 86  0  1  1  1  3  3  1  4  0  
-1 |  0 89  5  0  0  1  0  1  4  0  
-2 |  3  2 49  4  3  1 21  4 12  1  
-3 |  3  1  1 70  1 12  1  0  8  3  
-4 |  1  2  2  0 68  2  0  4  3 18  
-5 |  8  1  2  9  2 55  2  6  8  7  
-6 |  4  1 12  1  2  1 76  0  3  0  
-7 |  0  1  2  1  6  0  0 76  2 12  
-8 |  2  1  2  6  2  6  1  0 71  9  
-9 |  0  1  2  1 39  2  1  8  4 42  
+              Classifcation
+         0  1  2  3  4  5  6  7  8  9  
+      -------------------------------  
+    0 | 86  0  1  1  1  3  3  1  4  0  
+ E  1 |  0 89  5  0  0  1  0  1  4  0  
+ x  2 |  3  2 49  4  3  1 21  4 12  1  
+ p  3 |  3  1  1 70  1 12  1  0  8  3  
+ e  4 |  1  2  2  0 68  2  0  4  3 18  
+ c  5 |  8  1  2  9  2 55  2  6  8  7  
+ t  6 |  4  1 12  1  2  1 76  0  3  0  
+ e  7 |  0  1  2  1  6  0  0 76  2 12  
+ d  8 |  2  1  2  6  2  6  1  0 71  9  
+    9 |  0  1  2  1 39  2  1  8  4 42  
  ```
 
 The boosting using weak classifiers does not outperform either classifier from question 2.
 
-B.
+B. We tried running the boosted SVM on the same dataset of 10000 training points, but it was taking more than 5 hours 
+to fit. So, we modified the training set to a smaller 3000 training points, selected in a similar manner. The boosted 
+SVM does NOT outperform the classifiers we built in question 2. To prove this, we ran both the boosted SVM and the 
+non-boosted SVM on the same training / testing data sets.  
 
-C.
+Boosted SVM:  
+
+error: 0.183333333333  
+```
+              Classifcation
+         0  1  2  3  4  5  6  7  8  9  
+      -------------------------------  
+    0 | 23  0  1  0  0  4  2  0  0  0
+ E  1 |  0 27  2  0  0  1  0  0  0  0
+ x  2 |  0  0 27  0  0  0  1  0  2  0
+ p  3 |  0  1  0 24  0  4  1  0  0  0
+ e  4 |  0  0  1  0 26  0  1  0  0  2
+ c  5 |  0  0  1  0  1 28  0  0  0  0
+ t  6 |  0  0  3  0  0  2 25  0  0  0
+ e  7 |  0  1  2  0  2  1  0 19  1  4
+ d  8 |  0  2  2  1  2  2  0  0 19  2
+    9 |  0  0  2  1  0  0  0  0  0 27
+ ```
+ 
+Non-Boosted SVM:  
+ 
+error: 0.06  
+ ```
+              Classifcation
+         0  1  2  3  4  5  6  7  8  9  
+      -------------------------------  
+    0 | 30  0  0  0  0  0  0  0  0  0
+ E  1 |  0 29  1  0  0  0  0  0  0  0
+ x  2 |  0  0 28  0  0  0  0  1  1  0
+ p  3 |  0  0  0 26  0  3  0  0  0  1
+ e  4 |  0  0  0  0 29  0  1  0  0  0
+ c  5 |  0  0  0  0  0 30  0  0  0  0
+ t  6 |  0  0  0  0  0  1 28  0  1  0
+ e  7 |  0  1  1  0  1  1  0 26  0  0
+ d  8 |  0  1  0  0  0  0  0  0 27  2
+    9 |  0  0  0  0  0  0  0  0  1 29
+ ```
+

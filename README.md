@@ -67,7 +67,9 @@ high variance.
 
 
 **Part 3**
+
 B.
+
 1. Alpha = 1, Threshold = 0.5:
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_set_size.png)
 
@@ -82,6 +84,7 @@ As you can see, apart from alpha = 0, alpha does not have a major effect on erro
 slightly increases error rate.
 
 Based on these results, the optimal parameters chosen were Alpha = 1, Threshold = .5 Optimal error rates of ~16% error.
+
 3. Confusion Matrix 
 ```
            Classifcation
@@ -98,6 +101,7 @@ Based on these results, the optimal parameters chosen were Alpha = 1, Threshold 
  d  8 | 1  6  0  5  2  3  1  0 77  5
     9 | 1  2  0  0  3  0  0  5  4 85
 ```
+
 C.
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_0.png)  
 ![](https://github.com/friendly-flame/codename-obtuse-sniffle/blob/master/images/nb_miss_1.png)  
